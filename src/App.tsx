@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Grid, GridItem } from './components/Grid';
 import styled from 'styled-components';
-import { ProgressBar } from './components/Progress';
+import  CircularFloatProgress  from './components/Progress/CircularFloatProgress';
+import { ProgressBar } from './components/Progress/ProgressBar';
 
 
 
@@ -62,10 +63,10 @@ function App() {
   useEffect(() => {
     setTimeout(()=>{
       if(progress < 100){
-        const num = (progress + 10) < 100 ? progress + 15 : 100
+        const num = (progress + 10) < 100 ? progress + 1 : 100
         setProgress(num)
       }
-    }, 1000)
+    }, 3000)
   },[progress])
 
   return (
@@ -74,7 +75,7 @@ function App() {
       <Container>
         <Grid>
           <GridItem justify='center' align='center' style={{padding: '0 5px'}}>
-            <ProgressBar height='25px' width='12vw' progress={progress} clr='#F0F' mode={'middle'} showProgress/>
+            <ProgressBar width='50%' height='50px' up clr={'#000'} mode={'middle'} progress={100} />
           </GridItem>
         </Grid>
       </Container>
