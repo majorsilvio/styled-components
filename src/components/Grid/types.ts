@@ -17,7 +17,23 @@ type cssUnit =
 
 type cssUnitValue = `${number}${cssUnit}` | undefined;
 
-export interface GridProps {
+export type Grid = {
+  cols?: number;
+  rows?: number;
+  xs?: "lg" | "md" | "sm" | cssUnitValue;
+  width?: cssUnitValue;
+  height?: cssUnitValue;
+  item?: undefined | null | false;
+}
+
+export type GridItem = {
+  item: true;
+  rgap?: cssUnitValue;
+  cgap?: cssUnitValue;
+  rspan?: number;
+  cspan?: number;
+  align?: "center" | "start" | "end";
+  justify?: "center" | "start" | "end";
   cols?: number;
   rows?: number;
   xs?: "lg" | "md" | "sm" | cssUnitValue;
@@ -25,11 +41,4 @@ export interface GridProps {
   height?: cssUnitValue;
 }
 
-export interface GridItemProps {
-  rgap?: cssUnitValue;
-  cgap?: cssUnitValue;
-  rspan?: number;
-  cspan?: number;
-  align?: "center" | "start" | "end";
-  justify?: "center" | "start" | "end";
-}
+export type GridProps = Grid | GridItem;

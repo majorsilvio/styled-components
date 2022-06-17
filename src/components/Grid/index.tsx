@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { GridProps, GridItemProps } from "./types";
+import styled, { css } from "styled-components";
+import { GridItem, GridProps} from "./types";
 
 function rowSize(rowSize: string = "1fr") {
   switch (rowSize) {
@@ -25,14 +25,19 @@ const Grid = styled.div<GridProps>`
   grid-template-rows: ${(props) =>
     props?.rows ? `repeat( ${props.rows}, ${rowSize(props.xs)})` : ""};
   gap: 0.5%;
-`;
-const GridItem = styled(Grid)<GridItemProps>`
-  grid-row: ${(props) => (props.rspan ? "span " + props.rspan : "")};
-  grid-column: span ${(props) => (props.cspan ? props.cspan : 1)};
-  align-items: ${(props) => (props.align ? props.align : "")};
-  justify-items: ${(props) => (props.justify ? props.justify : "")};
-  grid-row-gap: ${(props) => (props.rgap ? props.rgap : "")};
-  grid-column-gap: ${(props) => (props.cgap ? props.cgap : "")};
+
+  ${(props) =>
+    props.item
+      ? gridItem(props)
+      : ""}
 `;
 
-export { Grid, GridItem };
+const gridItem = (props: GridItem) => css`
+    grid-row: ${props.rspan ? "span " + props.rspan : ""};
+        grid-column: span ${props.cspan ? props.cspan : 1};
+        align-items: ${props.align ? props.align : ""};
+        justify-items: ${props.justify ? props.justify : ""};
+        grid-row-gap: ${props.rgap ? props.rgap : ""};
+        grid-column-gap: ${props.cgap ? props.cgap : ""};`
+
+export default Grid;
