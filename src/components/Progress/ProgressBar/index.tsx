@@ -59,8 +59,10 @@ const before_and_after = ({ progress, showProgress, up }: ProgressProps) => css`
           justify-content: center;
           align-items: center;
           font-weight: 700;
-          ${up ? `transform-origin: 50% 50%;
-          transform: rotate(90deg);` : ''}
+          transform: translate(-50%, -50%);
+          ${up ? `
+          transform-origin: 50% 50%;
+          transform: rotate(90deg) translate(-10%, 100%);` : ''}
       }`
     : ""}
   `;
